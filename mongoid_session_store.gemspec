@@ -5,7 +5,7 @@ require 'mongoid_session_store/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "mongoid_session_store"
-  spec.version       = MongoidSessionStory::VERSION
+  spec.version       = MongoidSessionStore::VERSION
   spec.authors       = ["Bantik"]
   spec.email         = ["corey@idolhands.com"]
   spec.description   = %q{Mongoid alternative to ActiveRecord::SessionStore.}
