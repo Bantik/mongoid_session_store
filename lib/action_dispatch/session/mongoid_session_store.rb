@@ -3,6 +3,9 @@ require 'action_dispatch/middleware/session/abstract_store'
 module ActionDispatch
   module Session
 
+    class SessionExpiredException < Exception
+    end
+
     class MongoidSessionStore < ActionDispatch::Session::AbstractStore
 
       SESSION_RECORD_KEY = 'rack.session.record'
@@ -15,10 +18,7 @@ module ActionDispatch
       end
 
       def get_session(env, sid)
-        unless sid and session = session_class.find_by_session_id(sid)
-          sid = generate_sid
-          session = session_class.new(:session_id => sid, :data => {})
-        end
+        return nil unless sid and session = session_class.find_by_session_id(sid)
         env[SESSION_RECORD_KEY] = session
         [sid, session.data]
       end
